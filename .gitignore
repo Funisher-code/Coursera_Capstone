@@ -1,4 +1,7 @@
+.**
 cred_foursquare.json
 helperAddr_raw.csv
-.ipynb_checkpoints/
-notebook/.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+Exercise/scraping_from_wikipedia.ipynb
+report/COVID-19_Safe_And_Efficient_Food_Deliveries.pdf
+report/COVID-19_Safe_And_Efficient_Food_Deliveries.html
