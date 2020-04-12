@@ -9,7 +9,7 @@ Capstone Project, April 2020 by [Markus Mächler](https://www.linkedin.com/in/ma
 
 ## Introduction
 
-<img src="C:\Users\marku\OneDrive\Desktop\Coursera\IBM Data Science\09 - Applied Data Science Capstone\projects\Coursera_Capstone\corona_cases_total_numbers.png" alt="" style="zoom:25%;" align="right"/>Like many other countries all over the world, Switzerland is trying "flatten the curve" of COVID-19 infected people in order to make sure, that the local health system doesn't collapse. The **goal** of all the measures taken is to **prevent hospitals from having to treat a larger number of severe cases at the same time that they have the capacities for**.
+<img src="corona_cases_total_numbers.png" alt="" style="zoom:25%;" align="right"/>Like many other countries all over the world, Switzerland is trying "flatten the curve" of COVID-19 infected people in order to make sure, that the local health system doesn't collapse. The **goal** of all the measures taken is to **prevent hospitals from having to treat a larger number of severe cases at the same time that they have the capacities for**.
 
 In Switzerland we've been experiencing some major growth of COVID-19 cases in the last weeks. At the time I'm writing this introduction (April 5th 2020), despite drastic measures Switzerland still resides in the Top 10 countries considering total numbers of confirmed cases worldwide (see picture on the right[^1]).
 
@@ -67,9 +67,9 @@ In our scenario we have three parties:
 
 For every order, **location data of all the three parties** is absolutely necessary. For this POC I'm using the following data sources.
 
-- customers: **hypothetical positions in Zurich**
+- customers: **hypothetical address of a customer in Zurich**
+- helpers: **hypothetical addresses in Zurich**
 - shops: **Foursquare location data** acquired via API in the vicinity of people at risk
-- helpers: **hypothetical positions in Zurich**
 
 #### Additional Data
 
