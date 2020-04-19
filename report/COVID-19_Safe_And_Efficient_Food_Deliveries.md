@@ -59,17 +59,17 @@ The purpose of this project is creating a small POC (proof of concept) to help t
 
 In our scenario we have three parties:
 
-1. **customer** = person at risk ordering items
-2. **shop** = provider of the items e.g. take away restaurant, shop where items are to be purchased
-3. **helper** = home (or actual position) of helper that picks up the goods at the shop and delivers them to the customer
+1. **customer "C"** = person at risk ordering items
+2. **shop "S"** = provider of the items e.g. take away restaurant, shop where items are to be purchased
+3. **helper "H"** = home (or actual position) of helper that picks up the goods at the shop and delivers them to the customer
 
 #### Location Data
 
 For every order, **location data of all the three parties** is absolutely necessary. For this POC I'm using the following data sources.
 
-- customers: **hypothetical address of a customer in Zurich**
-- helpers: **hypothetical addresses in Zurich**
-- shops: **Foursquare location data** acquired via API in the vicinity of people at risk
+- C: **hypothetical address of a customer in Zurich**
+- H: **hypothetical addresses in Zurich**
+- S: **Foursquare location data** acquired via API in the vicinity of people at risk
 
 #### Additional Data
 
@@ -96,21 +96,47 @@ helpers:
 
 ...*Methodology section which represents the main component of the report where you discuss and describe any exploratory data analysis that you did, any inferential statistical testing that you performed, if any, and what machine learnings were used and why.*
 
-We have the following problems...
+### what we want to optimize
 
-1. ...keep people at risk **safe but not hungry**
-2. ...keep food producers **up and running**
-3. ...use helpers as **efficiently** as possible
+- minimize total distance helper has to travel
 
-In a simplified manner:
+assumptions:
+- the position of our customer (C) is fixed.
+- distances measured in air-line distance (may in some cases where street topology is special not lead to the ultimate best decisions, e.g. elevation ignored or dead end streets)
 
-- People at risk want to eat.
-- Let people at risk query food stations only in the vicinity of their homes.
-- Match resulting orders with helpers both close to the ppl at risk as well as the food stations.
+variables to measure distances the helper has to travel:
+1. __HtoS__ = distance from the helper (H) to the shop (S)
+2. __StoC__ = distance from shop (S) to customer (C)
+3. __CtoH__ = distance from customer (C) to shop (S)
 
+for the travel distance and time of our helper to be minimized we need to minimze the sum of our variable 1 to 3 (HtoS+StoC+CtoH = __totDis__)
 
+### Let's first visualize the problem we try to solve:
 
+![concept_distance](concept_distance.png)
 
+So by looking at these three possible combinations of helpers and shops we can state the following:
+
+- (3) is obviously a bad choice, since totDis is significantly larger than for the other two examples.
+- (2) has the shortest totDis and would therefore take our helper 3 the least amount of time.
+- (1) has a larger totDis but has the advantage that the distance from the shop to the customer is less than a third when compared to (2)
+
+So (2) is the solution, right? 
+
+Not necessarily. Consider that the item that needs to be purchased is refrigerated, e.g. a kind of medication that degrades when getting to warm. Or the customer orders something really heavy like a sixpack of water.
+
+In both cases (1) would make more sense than (2) even if totDis is larger.
+
+In the first example the medication would potentially get too warm and renderd useless. In the second example the helper would have a hard time lifting the items a long way.
+
+### Weighting
+
+A possible solution to make better recommendations would be to introduce weighting. To address our two real-world examples we could use weights for cases:
+
+- do items need to be refrigerated?
+- are heavy items included?
+
+For both cases StoC would receive higher weights than in a standard case.
 
 ## Results
 
