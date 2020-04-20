@@ -131,7 +131,7 @@ In the first example the medication would potentially get too warm and renderd u
 
 ### Weighting
 
-A possible solution to make better recommendations would be to introduce weighting. To address our two real-world examples we could use weights for cases:
+A possible solution to make better recommendations would be to introduce weighting. To address our two real-world examples we could use weights for real world use cases:
 
 - do items need to be refrigerated?
 - are heavy items included?
