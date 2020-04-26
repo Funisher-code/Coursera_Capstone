@@ -111,7 +111,7 @@ variables to measure distances the helper has to travel:
 
 for the travel distance and time of our helper to be minimized we need to minimze the sum of our variable 1 to 3 (HtoS+StoC+CtoH = __totDis__)
 
-### Let's first visualize the problem we try to solve:
+### Let's first visualize the problem we're trying to solve:
 
 ![concept_distance](concept_distance.png)
 
