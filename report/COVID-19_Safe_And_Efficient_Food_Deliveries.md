@@ -115,7 +115,7 @@ For every order, **location data of all the three parties** is absolutely necess
   - I queried the a **Swiss search engine "search.ch"** – where you can also look for addresses and phone numbers – for addresses with mail code 8049.
   - Out of the page content I created a csv.
   - The **csv** was then **anonymized** and **enriched with automatically generated fake email addresses** with the **Faker library**.
-  - Result is a data frame with **130 unique helpers**:![helperData](/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/helperData.png)
+  - Result is a data frame with **130 unique helpers**:![helperData](helperData.png)
   
   additionally: helper trolleys
   
@@ -135,7 +135,7 @@ For every order, **location data of all the three parties** is absolutely necess
       - **1'000 meters**
       - Rationale: A normal healthy young human walks at about 4 km/h by foot. So in 15 minutes the helper would travel 1 kilometer (=1000 meters). That's a reasonable number in a City like Zurich, where one has plenty of shopping possibilities. In rural areas one would probably consider cars as the transport way of choice and would also need to apply a larger radius.
   
-  ![venues](/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/venues.png)
+  ![venues](venues.png)
 
 ## Methodology
 
@@ -157,7 +157,7 @@ color scheme:
 
 - shops = green dots
 
-![exploratory_map_C-H-S](/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/exploratory_map_C-H-S.png)
+![exploratory_map_C-H-S](exploratory_map_C-H-S.png)
 
 This looks pretty nice. There are lots of helpers around. The shops are not evenly distributed at all, which really just equals reality. Shops simply tend to be at locations, where lots of potential customers are around. Here, the majority of the shops are located at "Limmattalstrasse" and "Regensdorferstrasse".
 
@@ -225,7 +225,7 @@ This way the **color range from green to red is separated by 5 segments of white
 minmax=(66.0, 2997.0), mean=1020.1544871794872, variance=347400.27566939685, skewness=0.6169407691028028, kurtosis=-0.05635316670094914
 ```
 
-![distances-HtoS](/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/distances-HtoS.png)
+![distances-HtoS](distances-HtoS.png)
 
 The closest shop to a helper is only 66 meters away, mean distance is about 1 km and variance is obviously very high.
 
@@ -237,7 +237,7 @@ The shop with index 6 seems to be the one that is furthest away from some of the
 minmax=(105.0, 957.0), mean=482.5833333333333, variance=99210.08333333334, skewness=0.3728582113979914, kurtosis=-1.475914078451692
 ```
 
-<img src="/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/diatances-StoC.png" alt="diatances-StoC" style="zoom:43%;" />
+<img src="diatances-StoC.png" alt="diatances-StoC" style="zoom:43%;" />
 
 We get a good picture about possible shop recommendations here. The shop with index 6 also seems to be far away from our customer. It probably won't make it into our recommendation list, then.
 
@@ -249,7 +249,7 @@ Shops 5,4 and 1 could be potentially interesting, especially if the shop has to 
 minmax=(105.0, 2080.0), mean=876.6769230769231, variance=306164.14287418005, skewness=0.6655659563462873, kurtosis=-0.6208715228192303
 ```
 
-![distances_CtoH](/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/distances_CtoH.png)
+![distances_CtoH](distances_CtoH.png)
 
 There are quite a few helpers located close to our customer, which is promising. Others are probably too far away.
 
@@ -259,7 +259,7 @@ There are quite a few helpers located close to our customer, which is promising.
 minmax=(281.0, 6034.0), mean=2379.4070512820513, variance=1379222.639206181, skewness=0.5854207297337536, kurtosis=-0.2367640214900928
 ```
 
-![distances-totDist](/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/distances-totDist.png)
+![distances-totDist](distances-totDist.png)
 
 Again, we can clearly see that "Restaurant Turbinenhaus" with index 6 will not be a good recommendation. Also the helpers, that are too far away seem to be out of the game when we look at total distance.
 
@@ -358,25 +358,25 @@ The resulting normalized score matrices for 4 different cases are visualized in 
 
 The **ticks represent the row index of the corresponding helper or shop** in the score matrices.
 
-![standard_score](/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/standard_score.png)
+![standard_score](standard_score.png)
 
 ```
 minmax=(0.04656943984090156, 1.0), mean=0.39433328658966715, variance=0.03788120326673271, skewness=0.5854207297337527, kurtosis=-0.23676402149009323
 ```
 
-![frigo_score](/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/frigo_score.png)
+![frigo_score](frigo_score.png)
 
 ```
 minmax=(0.047620549370841085, 1.0), mean=0.39404257951515825, variance=0.03629694972459201, skewness=0.5651590284958143, kurtosis=-0.17996869422459616
 ```
 
-![heavy_score](/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/heavy_score.png)
+![heavy_score](heavy_score.png)
 
 ```
 minmax=(0.04902832465388035, 1.0), mean=0.3781364090839513, variance=0.03131248140918763, skewness=0.5316299109179674, kurtosis=-0.04014952503549729
 ```
 
-![hot_heavy_frigo_score](/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/hot_heavy_frigo_score.png)
+![hot_heavy_frigo_score](hot_heavy_frigo_score.png)
 
 ```
 minmax=(0.050168590988045374, 1.0), mean=0.36525276858627226, variance=0.030269464745680003, skewness=0.5951194092669662, kurtosis=0.06004874094664281
@@ -475,7 +475,7 @@ By using the function described earlier for creating a base map with all the pos
 
 e.g. a visualization of the top 3 "standard case" recommendations:
 
-![final_top3_recommendation_map](/Users/markus/OneDrive/Desktop/Coursera/IBM Data Science/09 - Applied Data Science Capstone/projects/Coursera_Capstone/report/final_top3_recommendation_map.png)
+![final_top3_recommendation_map](final_top3_recommendation_map.png)
 
 ## Discussion
 
