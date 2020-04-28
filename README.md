@@ -8,7 +8,7 @@ The code can be viewed [on GitHub](https://github.com/Funisher-code/Coursera_Cap
 
 ## Blogpost
 
-A short article can be viewed [???on Linkedin???]().
+A short article can be viewed [on Linkedin](https://www.linkedin.com/pulse/poc-recommender-system-safe-efficient-food-deliveries-markus-m%25C3%25A4chler).
 
 ## Report
 
