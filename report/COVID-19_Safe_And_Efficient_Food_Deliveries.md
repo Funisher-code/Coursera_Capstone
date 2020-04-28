@@ -4,24 +4,24 @@
 
 # PoC – Recommender System for safe and efficient Food Deliveries during Infectious Disease induced Lockdowns
 
-Course "IBM Data Science"
+Course "IBM Data Science" – Professional Certificate
 Capstone Project, April 2020 by [Markus Mächler](https://www.linkedin.com/in/markus-maechler/)
 
 ## Introduction
 
-<img src="corona_cases_total_numbers.png" alt="" style="zoom:25%;" align="right"/>Like many other countries all over the world, Switzerland is trying "flatten the curve" of COVID-19 infected people in order to make sure, that the local health system doesn't collapse. The **goal** of all the measures taken is to **prevent hospitals from having to treat a larger number of severe cases at the same time that they have the capacities for**.
+Like many other countries all over the world, Switzerland is trying "flatten the curve" of COVID-19 infected people in order to make sure, that the local health system doesn't collapse. The **goal** of the drastic measures is to **prevent hospitals from simultaneously having to treat a larger number of severe cases than they have the capacities for**.
 
-In Switzerland we've been experiencing some major growth of COVID-19 cases in the last weeks. At the time I'm writing this introduction (April 5th 2020), despite drastic measures Switzerland still resides in the Top 10 countries considering total numbers of confirmed cases worldwide (see picture on the right[^1]).
+In Switzerland we've been experiencing some major growth of COVID-19 cases in the last weeks. At the time I'm writing this introduction (April 5th 2020), and despite drastic measures, Switzerland still resides in the top 10 countries considering total numbers of confirmed cases worldwide.
 
-The numbers for Switzerland become even more dramatic if you correct them for the number of inhabitants in each country. The Swiss having only about 8 million inhabitants, this translates to over 250 confirmed cases per 100'000 inhabitants. This is more than Italy and only slightly less than Spain.
+The numbers for Switzerland appear even more dramatic if you correct them for the number of inhabitants in each country. For the Swiss having only about 8 million inhabitants, this translates to over 250 confirmed cases per 100'000 inhabitants. This is more than Italy and only slightly less than Spain.
 
-**So corrected for the number of inhabitants, the Top 3 in the beginning of April 2020 are actually Spain, Switzerland and Italy.**
+**So corrected for the number of inhabitants, the top 3 in the beginning of April 2020 are actually Spain, Switzerland and Italy.**
 
 In this context, it makes more than sense for the federal government to call the situation "extraordinary".
 
 > The Federal Council has categorised the situation in Switzerland as extraordinary under the terms of the Epidemics Act. It has issued a series of measures aimed at the population, organisations and institutions, and the cantons. These measures are designed to curb the spread of the new coronavirus, protect people at especially high risk, and assure the provision of care and therapeutic products to the public. [^2]
 
-As a matter of fact there's currently a "lockdown" in place  and having seen from real world examples in China and Italy, the lockdown makes sense. As a part of that, all shops need to be closed. However, there are important exceptions:.
+As a matter of fact there's been a quite severe "lockdown" in place for weeks. Having seen real world examples like in China and Italy, the lockdown makes sense. As a part of that, all shops need to be closed. However, there are important exceptions:.
 
 > The ban does not apply to the following establishments and events:
 >
@@ -39,7 +39,7 @@ Everybody needs to stay at home unless it is absolutely necessary. Again, the fe
 > - If you have to help someone.
 > - If you are unable to work from home and you have to go to work.[^2]
 
-The risk of  becoming a severe case and needing hospitalization is much higher for people over the age of 65 and/or having chronic illnesses and also other factors. The situation creates a dilemma for the people at risk. For "flattening the curve" to work, **people at risk should not leave home at all. If possible not even for basic shopping like getting food**.
+The risk of  becoming a severe case and needing hospitalization is much higher for people over the age of 65 and/or having chronic illnesses and also other factors. So the situation creates a dilemma for the people at risk. For "flattening the curve" to work, **people at risk should not leave home at all. If possible not even for basic shopping like getting food**.
 
 In the small town where I live, I was able to sign up for a **neighborhood help program** so as a **helper** I can go shopping for people at risk. Again, for it to make sense, helpers should shop in the vicinity and also deliver in the vicinity of their homes. This safes both time as well as helps lowering the risk of spreading the virus infections over a big area.
 
@@ -51,9 +51,9 @@ Wouldn't it be great to solve all those problems together? Namely:
 2. keep shops and restaurants **up and running**
 3. use helpers as **efficiently and safely** as possible
 
-At the time I'm finishing this project (end of April) measures are starting to get loosened slowly. Certain types of shops are allowed to open again and the government is monitoring the numbers to make a decision on how to proceed.
+At the time I'm finishing this project (end of April) lockdown measures are starting to get loosened slowly. Certain types of shops are allowed to open again and the government is monitoring the numbers to make a decision on how to proceed.
 
-Either way, it will probably still take considerably more time for our persons at risk to be allowed to go back to normal life. Also restaurants are not part of the shops that are allowed to reopen soon. So while tension lifted somehow, the aforementioned problems still exist. Also other parts of the world aren't as far progressed yet. And of course, it can always come back, or we can be hit by some other pandemic.
+**Either way, it will probably still take considerably more time for our persons at risk to be allowed to go back to normal life.** Also restaurants are not part of the shops that are allowed to reopen soon. So while tension lifted somehow, the aforementioned problems still exist. Also other parts of the world aren't as far progressed yet. And of course, overwhelming infection rates can always come back, or we can be hit by some other pandemic altogether.
 
 **The purpose of this project is creating a small POC (proof of concept) to help tackling our three problems by creating a simple but efficient recommender system that could be used to place actual orders.**
 
@@ -67,17 +67,16 @@ In our scenario we have three parties:
 
 #### Location Data
 
-For every order, **location data of all the three parties** is absolutely necessary. For this POC I'm using the following data sources.
+For every order, **location data of all the three parties** is absolutely necessary.
+For this PoC I'm using the following data sources.
 
 - **C: hypothetical customer address and realtime weather data in Zurich**
   
-  - To have something to work with, I simply picked a *random address somewhere in Zurich Höngg (mail code 8049).
+  - To have something to start working with, I simply picked a *random address somewhere in Zurich Höngg (mail code 8049).
   
     ```python
     custAddr = 'Gsteigstrasse 9, 8049 Zurich'
     ```
-  
-    
   
   - The *openweathermap.org API* was used to get a json file including *local temperature* data.
   
@@ -112,15 +111,15 @@ For every order, **location data of all the three parties** is absolutely necess
   
 - **H: hypothetical locations in Zurich**
   
-  - I queried the a **Swiss search engine "search.ch"** – where you can also look for addresses and phone numbers – for addresses with mail code 8049.
+  - I queried the **Swiss search engine "search.ch"** – where you can also look for addresses and phone numbers – for addresses with mail code 8049.
   - Out of the page content I created a csv.
   - The **csv** was then **anonymized** and **enriched with automatically generated fake email addresses** with the **Faker library**.
-  - Result is a data frame with **130 unique helpers**:![helperData](helperData.png)
+  - result is a data frame with **130 unique helpers**:![helperData](helperData.png)
   
   additionally: helper trolleys
   
-  -  some of the helpers have **shopping trolleys** that help with the transport
-  - I simply created a random **one hot encoded matrix** with **about 20 %** of the helpers having a trolley.
+  -  some of the helpers have **shopping trolleys** that help with the transport of heavy and/or refrigerated items
+  - I created a random **one hot encoded matrix** with **about 20 %** of the helpers having a trolley.
   
 - **S: Foursquare location data** acquired via API in the vicinity of people at risk
   
@@ -133,9 +132,9 @@ For every order, **location data of all the three parties** is absolutely necess
     - Shopping – Mall 4bf58dd8d48988d1fd941735
   - **maximum StoC**:
       - **1'000 meters**
-      - Rationale: A normal healthy young human walks at about 4 km/h by foot. So in 15 minutes the helper would travel 1 kilometer (=1000 meters). That's a reasonable number in a City like Zurich, where one has plenty of shopping possibilities. In rural areas one would probably consider cars as the transport way of choice and would also need to apply a larger radius.
+      - Rationale: A normal healthy young human walks at about 4 km/h by foot. So in 15 minutes the helper would travel 1 kilometer (=1000 meters). That's a reasonable number in a city like Zurich, where one has plenty of shopping possibilities. In rural areas one would probably consider cars or bicycles as the transport way of choice and would also need to apply a larger radius.
+  - result is a dataframe with 12 shops:![venues](venues.png)
   
-  ![venues](venues.png)
 
 ## Methodology
 
@@ -143,11 +142,11 @@ For every order, **location data of all the three parties** is absolutely necess
 
 For both helpers and venues I used **pandas** data frames to store the data and **numpy** for working with weight  and score matrices.
 
-The  were produced with **matplotlib** and the interactive maps with **folium**.
+The heat maps were produced with **matplotlib** and the interactive maps with **folium**.
 
 ### exploratory data analysis
 
-To get a feeling for the distribution of the locations of shops, helpers and our customer, a map is very practical. I therefore created a function that creates a folium map with the positions of our three parties.
+To get a feeling for the distribution of the locations of shops, helpers and our customer, a map is very helpful. I therefore created a function that creates a folium map with the positions of our three parties.
 
 color scheme:
 
@@ -159,9 +158,9 @@ color scheme:
 
 ![exploratory_map_C-H-S](exploratory_map_C-H-S.png)
 
-This looks pretty nice. There are lots of helpers around. The shops are not evenly distributed at all, which really just equals reality. Shops simply tend to be at locations, where lots of potential customers are around. Here, the majority of the shops are located at "Limmattalstrasse" and "Regensdorferstrasse".
+This looks pretty nice. There are lots of helpers around. The shops are not evenly distributed at all, which just represents reality. Shops tend to be at locations, where lots of potential customers are roaming. Here, the majority of the shops are located at "Limmattalstrasse" and "Regensdorferstrasse".
 
-Looking at the map as a human it's quite obvious now to tell the customer to order at **"Marcello's Bistro"** (green dot west of red circle) or **"Pizzeria Rapido"** (green dot south of red circle). There are also quite a few potential helpers who live both near the bistro / pizzeria and the customer.
+Looking at the map as a human being it's quite obvious now to recommend our customer to order at **"Marcello's Bistro"** (green dot west of red circle) or **"Pizzeria Rapido"** (green dot south of red circle). There are also quite a few potential helpers who live both near the bistro / pizzeria and the customer.
 
 However, our customer may not like the food Marcello's Bistro produces etc., choices may not be that obvious or there simply could be too many requests for a person to process by phone.
 
@@ -217,7 +216,7 @@ I defined the following custom color map for that purpose:
 greenToRed=LinearSegmentedColormap.from_list('gr',["g", "w","w","w","w","w", "r"], N=128)
 ```
 
-This way the **color range from green to red is separated by 5 segments of white** to get a better feel for the extreme values. Green showing the lowest and red the highest values.
+This way the **color range from green to red is separated by 5 segments of white** to get a better feel for the extreme values. Green representing the lowest and red the highest values.
 
 ##### HtoS – distances between helpers and shops
 
@@ -229,7 +228,7 @@ minmax=(66.0, 2997.0), mean=1020.1544871794872, variance=347400.27566939685, ske
 
 The closest shop to a helper is only 66 meters away, mean distance is about 1 km and variance is obviously very high.
 
-The shop with index 6 seems to be the one that is furthest away from some of the helpers. If you have a look a the venues data frame, you see, that this is "Restaurant Turbinenhaus". If you look on the map, you can see it's located at the bottom right of the map and therefore naturally far away from helpers on the top left.
+The shop with index 6 seems to be the one that is furthest away from some of the helpers. If you have a look a the venues data frame, you see that this is "Restaurant Turbinenhaus". If you look on the map, you can see it's located at the bottom right of the map and therefore naturally far away from helpers on the top left.
 
 ##### StoC – distances between shops and customers
 
@@ -239,9 +238,9 @@ minmax=(105.0, 957.0), mean=482.5833333333333, variance=99210.08333333334, skewn
 
 <img src="diatances-StoC.png" alt="diatances-StoC" style="zoom:43%;" />
 
-We get a good picture about possible shop recommendations here. The shop with index 6 also seems to be far away from our customer. It probably won't make it into our recommendation list, then.
+We get a good picture of possible shop recommendations here. The shop with index 6 also seems to be far away from our customer. It probably won't make it into our recommendation list, then.
 
-Shops 5,4 and 1 could be potentially interesting, especially if the shop has to be close.
+Shops 5,4 and 1 could be potentially interesting, especially if the shop has to be near to the customer.
 
 ##### CtoH – distances between our customer and our helpers
 
@@ -265,10 +264,11 @@ Again, we can clearly see that "Restaurant Turbinenhaus" with index 6 will not b
 
 ### weighting
 
-A **possible solution to make better recommendations is to introduce weighting**. To address our 2 real-world examples we could use weights for real world use cases:
+A **possible solution to make more meaningful recommendations is to introduce weighting**. To address our 2 real-world examples we could use weights for real world use cases:
 
 - do items need to be **refrigerated**?
 - are **heavy items** included?
+- does the helper have a **shopping trolley**?
 
 For both cases StoC would receive higher weights than for the standard case.
 
@@ -305,7 +305,7 @@ def returnWeights (temperature, isRefrigerated=False, isHeavy=False):
     return w_total
 ```
 
-I let this function run on 26th of April where the temperature the openweathermap.org API reported was **a little below 20 degrees Celsius**. The function is **normalized** in a way that the **sum of all weights is always equal to 1**. 
+I let this function run on 26th of April where the temperature reported by the openweathermap.org API was **a little below 20 degrees Celsius**. The function is **normalized** in a way that the **sum of all weights is always equal to 1**. 
 
 It generated the following weight matrices:
 
@@ -324,7 +324,7 @@ temperature at customer location: 19.93 °C
 
 So in this setting **total distance gets less weight and the distance from the shop to the customer gets more weight under certain conditions**. Just like we wanted to.
 
-It's also obvious that HtoS and CtoH have no relevance at all in our current setting. So we might as well leave it out completely. But because future relevant use cases might bring importance to those, I decided to keep those in the calculations. Especially since it isn't taking much computation power.
+It's also obvious that HtoS and CtoH have no relevance at all in our current setting. So we might as well leave it out completely. But because future relevant use cases might bring importance to those, I decided to keep those in the calculations. Especially since it's taking hardly any computational power.
 
 So the final missing piece to get to scores are the following 2 functions:
 
@@ -344,17 +344,17 @@ def normPerfectToZero(array):
 
 The first one (calcScores) is for applying our weight matrix to our distance matrices and receiving a score matrix as an output. The second one (normPerfectToZero) normalizes the scores to a range from 0 to 1.
 
-**So the closer the score gets to 0, the better**. The perfect score of 0 would be the case, where the helper and the customer live at the same address as the shop.
+**The closer the score gets to 0, the better**. The perfect score of 0 would be the case, where the helper and the customer live at the same address as the shop.
 
 ## Results
 
-There could be numerous other parameters applied, e.g. shop rating and so an. But for the purpose of this PoC we'll leave it at that and see what our recommender system returns for our customer.
+There could be numerous other parameters applied. But for the purpose of this PoC we'll leave it at that and see what our recommender system returns for our customer.
 
 ### scores
 
 Since the customer in our case is fixed, each score matrix has only 2 dimensions, the **shops in the rows / on the y-axis** and the **helpers in the columns / on the x-axis**. 
 
-The resulting normalized score matrices for 4 different cases are visualized in the following **heat-maps followed by descriptive statistics for this case**.
+The resulting normalized score matrices for 4 different cases are visualized in the following **heat-maps followed by descriptive statistics for each case**.
 
 The **ticks represent the row index of the corresponding helper or shop** in the score matrices.
 
@@ -384,7 +384,7 @@ minmax=(0.050168590988045374, 1.0), mean=0.36525276858627226, variance=0.0302694
 
 ### recommendations
 
-For getting the top recommendations, I wrote a function find the 10 smallest scores and print the rank, shop and helper. The result ist this:
+For getting the top recommendations, I wrote a function to find the 10 smallest scores and print the rank, shop and helper. The result looks like this:
 
 #### standard case
 
@@ -471,11 +471,13 @@ Name: 68, dtype: object
 
 ### map visualizing the top 3 helper-shop combinations
 
-By using the function described earlier for creating a base map with all the positions, additionally by using the recommendation list, we can draw triangles on the maps [^3] that represent the airline distances e.g. of our top 3 recommendations in the list.
+We can biuild on the function described earlier for creating a base map with all the positions. By using the recommendation list, we can draw additional triangles on the maps [^3] that represent the airline distances.
 
 e.g. a visualization of the top 3 "standard case" recommendations:
 
 ![final_top3_recommendation_map](final_top3_recommendation_map.png)
+
+top recommendation in green, followed by orange on second and red on third place
 
 ## Discussion
 
@@ -483,47 +485,45 @@ e.g. a visualization of the top 3 "standard case" recommendations:
 
 When we have a quick look at the heat-maps of our score matrices in the results section, we can see that the score matrix seems to represent what it should and that it makes sense:
 
-There's shop rows that are either mostly white (shops with medium distance to the customer), white and green (closer shops) or white and red (shops with a larger distance). This is nice.
+There's shop rows that are either mostly white (shops with medium total distance), white and green (shops with low total distance) or white and red (probably shops with the largest distance to the customer). This is nice.
 
 **Shops 0 to 5 seem to have the highest scores. It's not as clear anymore that shops 5,4 and 1 are closest to the customer since not only StoC has an effect, but also the total distance.**
 
-When we look at the rows in the score matrices, we can clearly see that **helpers are usually either a fit or not**. There's not a single helper that has both red and green scores when combined with different shops. Then there's helper rows that show no color at all, which are probably the ones having a medium distance to the customer and are neither particularly good or bad.
+When we look at the rows in the score matrices, we can clearly see that **helpers are usually either a fit or not**. There's not a single helper that has both red and green scores when combined with different shops. Then there's helper rows that show no color at all, which are probably the ones having a medium distance to the customer or suitable shops and are thus neither particularly good or bad.
 
 Also it's quite striking, that the "standard case" and "refrigerated items case" look quite alike. This is not surprising, since on the day I calculated this, the weather was not particularly hot. So there's only a minor effect of weighting taking place.
 
-Also the "heavy items case" and the "refrigerated and heavy items on a hot summers day case" share more similarities, with the **extreme combination showing the most differences to the standard case**. This makes sense because there the weighting has the most differences to the standard case. In 
+And the "heavy items case" and the "refrigerated and heavy items on a hot summers day case" share more similarities, with the **extreme combination showing the most differences to the standard case**. This makes sense because there the weighting has the most differences to the standard case.
 
-**This appears to be a good base for making our recommendations.**
-
-Discussion section where you discuss any observations you noted and any recommendations you can make based on the results.
+**All in all, this appears to be a good base for making meaningful recommendations.**
 
 ### recommendation lists
 
 Already in the top 10 recommendations we can see **major differences depending on the circumstances**.
 
-Since Marcello's Bistro is definitely the closest to our customer, it makes sense that the top 6 recommendations are for this shop. But there's quite some differences in helper choice. Obviously because of the helpers having trolleys or not.
+Since Marcello's Bistro is definitely the closest to our customer, it makes sense that the top 6 recommendations include this shop. But there's **quite some differences in helper choice**. Obviously because of the **helpers having trolleys or not**.
 
-Take for example alexeiholsten@web.de as number 2 recommendation in the standard case. This helper is also number 2 in the "refrigerated items case" under not so hot circumstances. In the "heavy items case" he's number 6 and in the extreme combo he's not even in the top 10 anymore.
+Take for example `alexeiholsten@web.de` as number 2 recommendation in the standard case. This helper is also number 2 in the "refrigerated items case" under not so hot circumstances. In the "heavy items case" he's number 6 and in the extreme combo he's not even in the top 10 anymore.
 
-So the weighting works quite well.
+So the weighting works rather well.
 
 ### final map
 
-Now this is really a funny coincidence. Only when producing this final map, I realized that 2 of the fictitious helpers are living at "Tertianum Residenz - Im Brühl". 
+Now this is really a funny coincidence. Only when producing the final map, I realized that 2 of the fictitious helpers are living at "Tertianum Residenz - Im Brühl". 
 
-This is a place where you can spend your retirement days. Maybe not the best location to recruit helpers, if the helpers themselves may belong to the risk group.
+This is a place where you can spend your retirement days. Maybe that's not the best location to recruit helpers, if the helpers themselves may belong to the risk group.
 
 In real life, of course one would have to **make reasonably sure, that the helpers are up for the task**.
 
-Since this is only based on fake data extracted from OSINT sources, it's not relevant yet. But either way, this example once again shows that data cleaning is the most important process. Otherwise you'll have a lot of work put in your model, but it ends up producing in accordance to the garbage in garbage out principle.
+Since this is only based on fake data extracted from OSINT sources, it's not relevant yet. But either way, this example once again shows that **data cleaning is the most important process**. Otherwise you'll have a lot of work put in your model, but it ends up recommending in accordance to the garbage in garbage out principle.
 
-As a possibility, maybe it's the janitor and his 18 year old son, both living at "Tertianum Residenz", both being young and healthy.
+To be fair, maybe it's the janitor and his 18 year old son, both living at "Tertianum Residenz", and both being young and healthy.
 
 ### room for improvement
 
-Since this is only a PoC, there's obviously lots of room to make the recommendations a lot better.
+Since this is only a PoC, there's obviously lots of room to make the recommendations better.
 
-One good way is to take **additional data** into consideration. Here are some ideas for information that could be important to make good recommendations for both shops and helpers.
+One good way is to take **additional data** into consideration. Here are some ideas for information that could be important to make meaningful recommendations for both shops and helpers.
 
 customers:
 
@@ -541,17 +541,17 @@ helpers:
 - immunity COVID-19 (hypothetical)
 - availability status (hypothetical)
 
-These are just a few ideas. There is surely lot more one could look at.
+These are just a few ideas. There is surely a lot more one could look at.
 
 ### what could be next
 
-Besides incorporating more data, one would also have to think about how to build a whole system based on this small PoC. One of the first decisions would be to go for a **centralized or decentralized solution**.
+Besides incorporating more data, one would also have to think about how to build a whole system based on this small PoC. One of the first decisions would be to go for either a **centralized or decentralized solution**.
 
-Because of ease of implementation a centralized solution would be preferable in this case. Probably an intelligent move would be to **implement the information storage and querying in a relational database management system**.
+Because of ease of implementation a centralized solution would be preferable in this case. Probably an intelligent and quick move would be to **implement information storage and querying with a relational database management system**.
 
-Further, all processes should be **embedded in an order system** where helpers get requests and are able to accept or deny and shops also get notified when an order gets accepted. Depending on the status of the shop either the helpers go shopping themselves or there could be staff in the shops that prepares the orders and helpers simply fetch and deliver the goods.
+Further, all processes should be **embedded in an order system** where helpers get requests and are able to accept or deny and shops also get notified when an order gets accepted. Depending on the status of the shop either the helpers go shopping themselves. Or there could be staff in the shops that prepares the orders and helpers simply fetch and deliver the goods.
 
-Also one would have to think about the **target audience**. Nowadays there's lots of people that are familiar and comfortable with websites and apps, but here this would probably not be enough. Some of the older persons may need to be able to place orders also on the phone.
+Also one would have to think about the **target audience**. Nowadays there's lots of people that are familiar and comfortable with websites and apps, but here this would probably not be enough. Some of the older persons – that are the major customers here – may need to be able to place orders on the phone.
 
 The **assumption of airline distances is inherently flawed**. Measures in **real world walking time**, incorporating **elevation** etc. would need to be put in place to produce recommendations that represent real world topologies better. Also in rural areas probably **bikes or cars** would be the transport of choice rather than walking.
 
@@ -563,9 +563,9 @@ With the code up and running, it's **easy to apply it to different locations** w
 
 The **API queries, scoring and weighting systems played together well** and already produce somehow meaningful recommendations. Being only a PoC there is obviously **room for improvement** like **additional data sources** or measurement of distances not in airline distance but rather **real world walking time**.
 
-Also for this to work one would have to **build an order system and connect it to  the recommender system**, that takes the target audience  into consideration.
+Also for this to work one would have to **build an order system and connect it to  the recommender system**, that takes the **target audience**  into consideration.
 
-Finally, for a **small scale system**  – e.g. for a single community – based on such queries, one would maybe even get away with **free API options**. Or **sponsors** would be willing to pay for fees, or even API services themselves may give out **API keys for free** when used for mitigation for the current Covid-19 crisis.
+Finally, for a **small scale system**  – e.g. for a single community – based on such queries, one would maybe even get away with **free API options**. Or **sponsors** would be willing to pay for fees. Finally, API services themselves may give out **API keys for free** when used for mitigation of the current Covid-19 crisis.
 
 
 
