@@ -12,4 +12,4 @@ A short article can be viewed [on Linkedin](https://www.linkedin.com/pulse/poc-r
 
 ## Report
 
-The full report can be read [here](https://github.com/Funisher-code/Coursera_Capstone/blob/master/report/COVID-19_Safe_And_Efficient_Food_Deliveries.md).
+The full report can be read [here](https://github.com/Funisher-code/Coursera_Capstone/blob/master/report/COVID-19_Safe_And_Efficient_Food_Deliveries.md) or if you prefer a pdf [here](https://github.com/Funisher-code/Coursera_Capstone/blob/master/report/COVID-19_Safe_And_Efficient_Food_Deliveries.pdf).
